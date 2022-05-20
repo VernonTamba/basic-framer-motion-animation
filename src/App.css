@@ -74,3 +74,33 @@
     min-width: 13rem;
   }
 }
+
+.App__mainDiv {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.navigateBefore,
+.navigateNext {
+  position: absolute;
+  transform: translate(-10%, -50%);
+  cursor: pointer;
+  color: white;
+  transition: all 2s ease;
+}
+
+.navigateBefore {
+  top: 50%;
+  left: 10%;
+}
+
+.navigateNext {
+  top: 50%;
+  right: 10%;
+}
+
+.navigateBefore:hover,
+.navigateNext:hover {
+  color: #61dafb;
+}
