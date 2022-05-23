@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import images from "./Images";
@@ -13,33 +13,25 @@ function App() {
   const itemRef = useRef();
 
   const goPrevious = (currentWidth) => {
-    if (currentWidth === 0) {
-      setWidth(width);
+    setWidth(currentWidth - itemRef.current.offsetWidth);
+    if (currentWidth === itemRef.current.offsetWidth) {
+      setVisible(0);
     } else {
-      setWidth(width - itemRef.current.offsetWidth);
+      setVisible(1);
     }
   };
 
   const goNext = (currentWidth) => {
+    setWidth(currentWidth + itemRef.current.offsetWidth);
     if (
-      currentWidth ===
-      itemRef.current.offsetWidth + itemRef.current.scrollWidth
+      itemRef.current.scrollWidth - itemRef.current.offsetWidth <=
+      itemRef.current.offsetWidth
     ) {
-      setWidth(width);
-    } else {
-      setWidth(width + itemRef.current.offsetWidth);
-    }
-  };
-
-  useEffect(() => {
-    if (width === 0) {
-      setVisible(0);
-    } else if (width * 2 >= itemRef.current.scrollWidth && width !== 0) {
       setVisible(2);
     } else {
       setVisible(1);
     }
-  }, [width]);
+  };
 
   return (
     <div className="App">
